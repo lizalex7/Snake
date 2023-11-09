@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: green;
+  margin: 50px;
+  font-family: "Bodini Moda, sans serif";
+}
+
+header {
+  display: flex;
+  justify-content:flex-start;
+  align-items: right;
+  background-color: white;
+  padding-top: 30px;
+  flex-direction: row-reverse;
+}
+
+h1 {
+  padding-right: 50px;
+  padding-left: 30px;
+  color: red;
+  font-size: 3em;
+  text-align: right;
+  margin: 0;
+}
+
+h2 {
+  color: white;
+  margin-bottom: 0px;
+  font-size: 40px;
+  padding-top: 30px;
+}
+
+p {
+  font-size: 70px;
+  margin: 0px;
+  color: white;
+  background-color: green;
+  padding-top: 15px;
+}
+
+main {
+  background-color: white;
+  height: 90vh;
+}
+
+img.caterpillar {
+  width: 200px;
+  height: auto;
+  margin: 0px;
+}
+
+img.apple {
+  margin-left: 450px;
+  width: 450px;
+  height: auto;
+  margin: 0px;
+}
+
+.pointsScored {
+  border: solid green;
+  height: 250px;
+  width: 250px;
+  text-align: center;
+  margin-left: 75px;
+  margin-right: 75px;
+  background-color: green;
+}
+
+#startBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  background-color: inherit;
+  padding: 0%;
+}
+
+#startBtn p {
+  font-size: 40px;
+  text-align: center;
+  background-color: transparent;
+  position: absolute;
+  font-weight: bold;
+  padding-top: 40px;
+}
+
+.grid {
+  width: 600px;
+  height: 600px;
+}
+
+.grid-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 75px;
+}
+
+.grid div {
+  display: inline-block;
+  border: solid thin white;
+  background-color: #87CEEB;
+  border-radius: 15%;
+}
+
+div.edge-cell {
+  background-color: red;
+}
+
+.grid div.apple {
+  background-image: url('../Images/Apple.png');
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.grid div.caterpillar {
+  background-image: url(../Images/Green\ dot.png);
+  background-size: 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+
