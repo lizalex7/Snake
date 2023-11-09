@@ -112,7 +112,7 @@ button {
 }
 
 div.edge-cell {
-  background-color: red;
+  background-color: transparent;
 }
 
 .grid div.apple {

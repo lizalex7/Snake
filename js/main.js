@@ -6,26 +6,25 @@ const pointsScored = document.getElementById('points')
 const cells = []
 
 // **Grid
-const width = 10
+const width = 15
 const cellCount = width * width
 
 // **Variables
 let gameActive
 let gameInterval
-const intervalSpeed = 1000
+const intervalSpeed = 800
 let score = 0
-const caterpillar = [3, 4, 5]
+const caterpillar = [16, 17, 18]
 let currentDirection = 1
 let applePosition = 0
 const restrictCells = []
-// let caterpillarLength = 3
 
 
 // This function creates the grid which is visible on page load
 function createGrid() {
   for (let i = 0; i < cellCount; i++) {
     const cell = document.createElement('div')
-    cell.innerText = i
+    // cell.innerText = i
     // cell.id = i
     grid.append(cell)
     cell.style.width = `${100 / width}%`
@@ -33,7 +32,7 @@ function createGrid() {
 
     if (i < width || i >= cellCount - width || i % width === 0 || i % width === width - 1)
       cell.classList.add('edge-cell')
-  
+
     cells.push(cell)
   }
 }
@@ -64,7 +63,7 @@ function moveCaterpillar(evt) {
 function checkForApple() {
   if (cells[caterpillar[caterpillar.length - 1]].classList.contains('apple')) {
     removeApple()
-    addApple()
+    addApple() 
     score += 100
     incCaterpillar()
   }
@@ -83,19 +82,18 @@ function addAllCaterpillar(caterpillarArray) {
 
 // Adding the apple to a random position on the grid
 function addApple() {
+  // Adding restriced cells to an array
+  cells.forEach((cell, index) => {
+    if (cell.classList.contains('edge-cell', 'caterpillar')) {
+      restrictCells.push(index)
+    }
+  })
   do {
     applePosition = Math.floor(Math.random() * cells.length)
   } while (restrictCells.includes(applePosition))
-  
+
   cells[applePosition].classList.add('apple')
 }
-
-// Adding restriced cells to an array
-cells.forEach((cell, index) => {
-  if (cell.classList.contains('edge-cells')) {
-    restrictCells.push(index)
-  }
-})
 
 // Remove the caterpillar from the previous cell
 function removeCaterpillar(position) {
@@ -128,9 +126,9 @@ function directCaterpillar(evt) {
 }
 
 // This function increases the speed and size of the caterpillar each time an apple is eaten
-function incCaterpillar() { 
+function incCaterpillar() {
   clearInterval(gameInterval)
-  gameInterval = setInterval(moveCaterpillar, (intervalSpeed * 0.95))
+  gameInterval = setInterval(moveCaterpillar, (intervalSpeed * 0.5))
 
   caterpillar.unshift(caterpillar[0] - currentDirection)
 }
@@ -146,15 +144,19 @@ function handleCollision(collision) {
     // Collision with top wall
     (caterpillarHead - width < 0 && currentDirection === -width) ||
     // Collision with bottom wall
-    (caterpillarHead + width >= width * width && currentDirection === width)) {
+    (caterpillarHead + width >= width * width && currentDirection === width)
+  ){
     endGame()
+  } // Collision with itself
+  for (let i = 0; i < caterpillar.length - 1; i++) {
+    if (caterpillar[i] === caterpillarHead) {
+      endGame()
+    } 
   }
-  // // Collision with itself
-  // ((caterpillar[caterpillar.length - 1]).classList.contains('caterpillar')))
 }
 
 // This function outlines the process once a collision occurs -> the interval clears, alert appears and caterpillar and apple removed
-function endGame(){
+function endGame() {
   clearInterval(gameInterval)
   alert('GAME OVER')
   removeAllCaterpillar()
@@ -164,7 +166,6 @@ function endGame(){
 // **Events
 // Event listener on start button
 startBtn.addEventListener('click', startGame)
-startBtn.style.border = 'none'
 
 // Keypress event - on key press update caterpillar position
 document.addEventListener('keydown', directCaterpillar)
