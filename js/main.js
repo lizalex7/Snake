@@ -12,7 +12,7 @@ const cellCount = width * width
 // **Variables
 let gameActive
 let gameInterval
-const intervalSpeed = 800
+let intervalSpeed = 800
 let score = 0
 const caterpillar = [16, 17, 18]
 let currentDirection = 1
@@ -128,7 +128,7 @@ function directCaterpillar(evt) {
 // This function increases the speed and size of the caterpillar each time an apple is eaten
 function incCaterpillar() {
   clearInterval(gameInterval)
-  gameInterval = setInterval(moveCaterpillar, (intervalSpeed * 0.5))
+  gameInterval = setInterval(moveCaterpillar, (intervalSpeed = intervalSpeed * 0.8))
 
   caterpillar.unshift(caterpillar[0] - currentDirection)
 }
@@ -174,11 +174,4 @@ document.addEventListener('keydown', directCaterpillar)
 // Grid visible on page load
 createGrid()
 
-
-// **Additional features
-// Styling of the caterpillar
-// Audio
-// Two player
-// Rules of the game
-// Shake grid on game over
 
